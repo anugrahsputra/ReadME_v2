@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../models/book_models.dart';
 import '../themes.dart';
 
 class BuildImage extends StatelessWidget {
