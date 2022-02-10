@@ -26,7 +26,7 @@ class ReleaseCard extends StatelessWidget {
         Navigator.pushNamed(context, '/detail', arguments: id);
       },
       child: Container(
-        margin: const EdgeInsets.only(left: 30, bottom: 20, right: 30),
+        margin: const EdgeInsets.only(left: 30, bottom: 20),
         child: Row(
           children: [
             Image.asset(
