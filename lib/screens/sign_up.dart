@@ -2,26 +2,33 @@ import 'package:flutter/material.dart';
 
 import '../themes.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: ListView(
-          children: [
-            logo(),
-            header(),
-            emailInput(),
-            passwordInput(),
-            signInButton(context),
-            SizedBox(height: height * 0.14),
-            footer(context),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              logo(),
+              header(),
+              fullnameInput(),
+              usernameInput(),
+              emailInput(),
+              passwordInput(),
+              SizedBox(
+                height: height * 0.14,
+              ),
+              signUpButton(context),
+              footer(context),
+            ],
+          ),
         ),
       ),
     );
@@ -59,14 +66,14 @@ class SignIn extends StatelessWidget {
   Widget header() {
     return Container(
       margin: const EdgeInsets.only(
-        top: 100,
+        top: 60,
         left: 30,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'LOGIN',
+            'SIGN UP',
             style: primaryText.copyWith(
               letterSpacing: 3,
               fontSize: 24,
@@ -78,7 +85,43 @@ class SignIn extends StatelessWidget {
     );
   }
 
-  Widget emailInput() {
+  Widget fullnameInput() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+        left: 35,
+        right: 35,
+      ),
+      height: 52,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xffE3E3E3),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.account_circle,
+            color: Color(0xff8A8A8A),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+              child: TextFormField(
+            style: primaryText,
+            // controller: emailController,
+            decoration: InputDecoration.collapsed(
+              hintText: 'Full Name',
+              hintStyle: secondaryText.copyWith(
+                letterSpacing: 2,
+              ),
+            ),
+          ))
+        ],
+      ),
+    );
+  }
+
+  Widget usernameInput() {
     return Container(
       margin: const EdgeInsets.only(
         top: 30,
@@ -104,6 +147,42 @@ class SignIn extends StatelessWidget {
             // controller: emailController,
             decoration: InputDecoration.collapsed(
               hintText: 'Username',
+              hintStyle: secondaryText.copyWith(
+                letterSpacing: 2,
+              ),
+            ),
+          ))
+        ],
+      ),
+    );
+  }
+
+  Widget emailInput() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+        left: 35,
+        right: 35,
+      ),
+      height: 52,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: const Color(0xffE3E3E3),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.email_rounded,
+            color: Color(0xff8A8A8A),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+              child: TextFormField(
+            style: primaryText,
+            // controller: emailController,
+            decoration: InputDecoration.collapsed(
+              hintText: 'Email',
               hintStyle: secondaryText.copyWith(
                 letterSpacing: 2,
               ),
@@ -150,23 +229,23 @@ class SignIn extends StatelessWidget {
     );
   }
 
-  Widget signInButton(context) {
+  Widget signUpButton(context) {
     return Container(
       height: 52,
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 41, left: 30, right: 30),
+      margin: const EdgeInsets.only(top: 50, left: 30, right: 30),
       child: TextButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/home');
+          Navigator.pushNamed(context, '/');
         },
         style: TextButton.styleFrom(
-          backgroundColor: pinkColor,
+          backgroundColor: blueColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
         child: Text(
-          'SIGN IN',
+          'SIGN UP',
           style: primaryText.copyWith(
             letterSpacing: 3,
             color: Colors.white,
@@ -180,22 +259,22 @@ class SignIn extends StatelessWidget {
 
   Widget footer(context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 30),
+      margin: const EdgeInsets.only(bottom: 30, top: 30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'Don\'t have an account? ',
+            'Already have an account? ',
             style: secondaryText.copyWith(
               fontSize: 12,
             ),
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/sign-up');
+              Navigator.pushNamed(context, '/');
             },
             child: Text(
-              'Sign Up',
+              'Sign In',
               style: primaryText.copyWith(
                 color: blueColor,
                 fontSize: 12,
