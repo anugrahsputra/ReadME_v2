@@ -27,6 +27,8 @@ class _MainscreenState extends State<Mainscreen> {
         child: BottomAppBar(
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
+            elevation: 0,
+            backgroundColor: Colors.white,
             currentIndex: pageProvider.currentIndex,
             onTap: (index) {
               pageProvider.currentIndex = index;

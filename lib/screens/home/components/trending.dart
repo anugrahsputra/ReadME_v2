@@ -19,17 +19,18 @@ class Trending extends StatelessWidget {
       child: SizedBox(
         height: 195,
         child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: book.length,
-            itemBuilder: (context, i) {
-              return TrendingCard(
-                id: book[i].id,
-                title: book[i].title,
-                image: book[i].image,
-                author: book[i].author,
-              );
-            }),
+          physics: const BouncingScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          itemCount: book.length,
+          itemBuilder: (context, i) {
+            return TrendingCard(
+              id: book[i].id,
+              title: book[i].title,
+              image: book[i].image,
+              author: book[i].author,
+            );
+          },
+        ),
       ),
     );
   }

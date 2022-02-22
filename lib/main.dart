@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:readmev2/providers/book_provider.dart';
 import 'package:readmev2/providers/page_provider.dart';
 
 import 'screens/detail/detailscreen.dart';
-import 'screens/home/homescreens.dart';
 import 'screens/mainscreen.dart';
 import 'screens/sign_in.dart';
 import 'screens/sign_up.dart';
@@ -18,6 +18,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.dark,
+        systemNavigationBarColor: Colors.white,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+    );
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -28,6 +38,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        color: Colors.white,
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => const SignIn(),

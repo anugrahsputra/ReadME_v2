@@ -10,6 +10,7 @@ class SignIn extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: ListView(
@@ -99,16 +100,17 @@ class SignIn extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           Expanded(
-              child: TextFormField(
-            style: primaryText,
-            // controller: emailController,
-            decoration: InputDecoration.collapsed(
-              hintText: 'Username',
-              hintStyle: secondaryText.copyWith(
-                letterSpacing: 2,
+            child: TextFormField(
+              style: primaryText,
+              // controller: emailController,
+              decoration: InputDecoration.collapsed(
+                hintText: 'Username',
+                hintStyle: secondaryText.copyWith(
+                  letterSpacing: 2,
+                ),
               ),
             ),
-          ))
+          )
         ],
       ),
     );
