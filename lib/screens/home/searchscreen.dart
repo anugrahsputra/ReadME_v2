@@ -1,80 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../providers/book_provider.dart';
+import '../../data/book_data.dart';
+import '../../models/book_models.dart';
 import '../../themes.dart';
+import '../../widgets/search_card.dart';
+import '../../widgets/search_widget.dart';
 
 class Searchscreen extends StatefulWidget {
-  const Searchscreen({
-    Key? key,
-  }) : super(key: key);
+  const Searchscreen({Key? key}) : super(key: key);
 
   @override
   State<Searchscreen> createState() => _SearchscreenState();
 }
 
 class _SearchscreenState extends State<Searchscreen> {
+  String query = '';
+  late List<BookModel> books;
+
   // final TextEditingController _textEditingController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    final data = Provider.of<BookProvider>(context);
-    var book = data.books;
+  void initState() {
+    super.initState();
 
+    books = bookdata;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          elevation: 0,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 23),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.filter_list_rounded,
-                  color: Colors.black,
-                  size: 28,
-                ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 23),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.filter_list_rounded,
+                color: Colors.black,
+                size: 28,
               ),
             ),
-          ],
-          title: Container(
-            padding: const EdgeInsets.only(left: 10),
-            width: width,
-            height: 35,
-            decoration: BoxDecoration(
-              color: const Color(0xffE1E1E1),
-              borderRadius: BorderRadius.circular(9),
-            ),
-            child: Row(
+          ),
+        ],
+        title: buildSearch(),
+      ),
+      body: query.isEmpty
+          ? noResult()
+          : Column(
               children: [
-                const Icon(
-                  Icons.search_rounded,
-                  color: Color(0xff8A8A8A),
-                  size: 16,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
                 Expanded(
-                  child: TextFormField(
-                    // controller: _textEditingController,
-                    style: primaryText.copyWith(
-                      fontSize: 13,
-                    ),
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'Search',
-                      hintStyle: secondaryText.copyWith(fontSize: 13),
-                    ),
+                  child: ListView.builder(
+                    itemCount: books.length,
+                    itemBuilder: (context, i) {
+                      final book = books[i];
+                      return SearchCard(
+                        id: book.id,
+                        title: book.title,
+                        image: book.image,
+                        author: book.author,
+                        price: book.price.toString(),
+                      );
+                    },
                   ),
                 ),
               ],
             ),
-          ),
-        ),
-        body: noResult());
+    );
   }
 
   Column noResult() {
@@ -94,5 +89,26 @@ class _SearchscreenState extends State<Searchscreen> {
         ),
       ],
     );
+  }
+
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Title or Author Name',
+        onChanged: searchBook,
+      );
+
+  void searchBook(String query) {
+    final books = bookdata.where((book) {
+      final title = book.title.toLowerCase();
+      final author = book.author.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return title.contains(searchLower) || author.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      this.query = query;
+      this.books = books;
+    });
   }
 }
