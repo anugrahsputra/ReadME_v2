@@ -60,6 +60,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           ),
           hintText: widget.hintText,
           hintStyle: secondaryText.copyWith(fontSize: 13),
+          contentPadding: const EdgeInsets.only(bottom: 13),
         ),
         onChanged: widget.onChanged,
       ),
