@@ -43,6 +43,7 @@ class _MainscreenState extends State<Mainscreen> {
                   ),
                   child: Icon(
                     Icons.home,
+                    size: 26,
                     color: pageProvider.currentIndex == 0
                         ? Color(0xff858585)
                         : Color(0xffD8D8D8),
@@ -58,6 +59,7 @@ class _MainscreenState extends State<Mainscreen> {
                   ),
                   child: Icon(
                     Icons.search,
+                    size: 26,
                     color: pageProvider.currentIndex == 1
                         ? Color(0xff858585)
                         : Color(0xffD8D8D8),
@@ -73,6 +75,7 @@ class _MainscreenState extends State<Mainscreen> {
                   ),
                   child: Icon(
                     Icons.bookmarks,
+                    size: 26,
                     color: pageProvider.currentIndex == 2
                         ? Color(0xff858585)
                         : Color(0xffD8D8D8),
@@ -88,6 +91,7 @@ class _MainscreenState extends State<Mainscreen> {
                   ),
                   child: Icon(
                     Icons.account_circle,
+                    size: 26,
                     color: pageProvider.currentIndex == 3
                         ? Color(0xff858585)
                         : Color(0xffD8D8D8),

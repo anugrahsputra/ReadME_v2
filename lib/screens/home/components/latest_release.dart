@@ -22,11 +22,12 @@ class LatestRelease extends StatelessWidget {
             itemCount: book.length,
             itemBuilder: (context, i) {
               return ReleaseCard(
-                  id: book[i].id,
-                  title: book[i].title,
-                  image: book[i].image,
-                  author: book[i].author,
-                  price: book[i].price.toString());
+                id: book[i].id,
+                title: book[i].title,
+                image: book[i].image,
+                author: book[i].author,
+                price: book[i].price.toString(),
+              );
             },
           ),
         ],

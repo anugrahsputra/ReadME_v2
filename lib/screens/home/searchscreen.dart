@@ -17,8 +17,6 @@ class _SearchscreenState extends State<Searchscreen> {
   String query = '';
   late List<BookModel> books;
 
-  // final TextEditingController _textEditingController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -29,6 +27,7 @@ class _SearchscreenState extends State<Searchscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
@@ -82,7 +81,7 @@ class _SearchscreenState extends State<Searchscreen> {
               horizontal: 30,
             ),
             child: Text(
-              'No Results!',
+              'Search a Book',
               style: primaryText.copyWith(fontSize: 18),
             ),
           ),
@@ -91,11 +90,13 @@ class _SearchscreenState extends State<Searchscreen> {
     );
   }
 
-  Widget buildSearch() => SearchWidget(
-        text: query,
-        hintText: 'Title or Author Name',
-        onChanged: searchBook,
-      );
+  Widget buildSearch() {
+    return SearchWidget(
+      text: query,
+      hintText: 'Title or Author Name',
+      onChanged: searchBook,
+    );
+  }
 
   void searchBook(String query) {
     final books = bookdata.where((book) {

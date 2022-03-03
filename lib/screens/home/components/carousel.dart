@@ -55,14 +55,16 @@ class _CarouselState extends State<Carousel> {
     final book = data.books;
 
     return AnimatedSmoothIndicator(
-        activeIndex: activeIndex,
-        count: book.length,
-        effect: const ColorTransitionEffect(
-            spacing: 5.0,
-            radius: 5.0,
-            dotWidth: 6,
-            dotHeight: 6,
-            dotColor: Color(0xffC4C4C4),
-            activeDotColor: Color(0xff9DB0FF)));
+      activeIndex: activeIndex,
+      count: book.length,
+      effect: const ColorTransitionEffect(
+        spacing: 5.0,
+        radius: 5.0,
+        dotWidth: 6,
+        dotHeight: 6,
+        dotColor: Color(0xffC4C4C4),
+        activeDotColor: Color(0xff9DB0FF),
+      ),
+    );
   }
 }

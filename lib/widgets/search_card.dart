@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:readmev2/screens/detail/detailscreen.dart';
 
 import '../themes.dart';
 

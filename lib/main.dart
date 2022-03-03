@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:readmev2/providers/book_provider.dart';
-import 'package:readmev2/providers/page_provider.dart';
 
+import 'providers/book_provider.dart';
+import 'providers/bookmark_provider.dart';
+import 'providers/page_provider.dart';
 import 'screens/detail/detailscreen.dart';
 import 'screens/mainscreen.dart';
 import 'screens/sign_in.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => PageProvider(),
         ),
+        ChangeNotifierProvider(create: (context) => BookmarkProvider())
       ],
       child: MaterialApp(
         color: Colors.white,

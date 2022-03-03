@@ -39,20 +39,6 @@ class _SearchWidgetState extends State<SearchWidget> {
         ),
         decoration: InputDecoration(
           border: InputBorder.none,
-          suffixIcon: widget.text.isNotEmpty
-              ? GestureDetector(
-                  child: const Icon(
-                    Icons.close_rounded,
-                    color: Color(0xff8A8A8A),
-                    size: 16,
-                  ),
-                  onTap: () {
-                    controller.clear();
-                    widget.onChanged;
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                )
-              : null,
           icon: const Icon(
             Icons.search_rounded,
             color: Color(0xff8A8A8A),
